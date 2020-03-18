@@ -5,15 +5,20 @@ for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", function () {
         let buttonInnerHTML = this.innerHTML;
         makeSound(buttonInnerHTML);
+
+        buttonAnimation(buttonInnerHTML);
+
     });
 }
 
 //Detecting keyboard press
 document.addEventListener("keypress", function (event) {
     makeSound(event.key);
+
+    buttonAnimation(event.key);
 })
 
-
+// Making sound depending on mouse click or press the key
 function makeSound (key){
 
     switch (key) {
@@ -49,3 +54,45 @@ function makeSound (key){
         default: console.log(buttonInnerHTML);
     }
 }
+
+// Animation depending on mouse click or press the key
+
+//We can call this function in both places where we make sound (look above)
+    function buttonAnimation (currentKey) {
+
+    //This is the button that we are going to change its style
+    var activeButton = document.querySelector("." + currentKey);
+
+    //Adding a new class to change its stylw
+    activeButton.classList.add("pressed");
+
+    //Removing this class after a delay
+        setTimeout(function () {
+            activeButton.classList.remove("pressed");
+        }, 100)
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
